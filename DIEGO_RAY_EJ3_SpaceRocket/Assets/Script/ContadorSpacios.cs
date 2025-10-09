@@ -9,6 +9,9 @@ public class ContadorSpacios : MonoBehaviour
     [SerializeField]
     GameObject pantalaJuego;
 
+    [SerializeField]
+    GameObject panelCavas;
+
     public float tiempoParaPulsar = 10f;
     bool tiempoActivo = false;
 
@@ -23,6 +26,21 @@ public class ContadorSpacios : MonoBehaviour
     {
         bool Tocado = Input.GetKey(botonAccion);
         if (pantalaJuego != null) tiempoActivo = true;
+
+        if (tiempoActivo)
+        {
+            if (tiempoParaPulsar > 0)
+            {
+                tiempoParaPulsar -= Time.deltaTime;
+                tiempoTexto.text = tiempoParaPulsar.ToString("F2");
+            }
+            else
+            {
+                tiempoActivo = false;
+                tiempoTexto.text = "Se acabo el tiempo";
+                pantalaCanvas.SetActive(false);
+            }
+        }
 
         
         if (Tocado && tiempoActivo)
