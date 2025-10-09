@@ -766,7 +766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &672809292
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1063,6 +1063,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1065849328}
+  - component: {fileID: 1065849329}
   m_Layer: 5
   m_Name: Tiempo
   m_TagString: Untagged
@@ -1091,6 +1092,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 40}
   m_SizeDelta: {x: 130.5214, y: 111.141205}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1065849329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065849327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1894dcb9b53e0e24087ab9b3e4df26b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  botonAccion: 27
+  pantalaJuego: {fileID: 0}
+  tiempoParaPulsar: 10
+  contadorDeSaltos: {fileID: 0}
+  tiempoTexto: {fileID: 0}
 --- !u!1 &1242651289
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,6 +1430,7 @@ GameObject:
   - component: {fileID: 1567806168}
   - component: {fileID: 1567806167}
   - component: {fileID: 1567806166}
+  - component: {fileID: 1567806169}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -1482,7 +1501,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1567806167}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1567806169}
+        m_TargetAssemblyTypeName: Start, Assembly-CSharp
+        m_MethodName: AccionBoton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Start
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1567806167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1521,6 +1552,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1567806164}
   m_CullTransparentMesh: 1
+--- !u!114 &1567806169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567806164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe3e0422b5205ab4d8dd696d92e687eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  desactivar: {fileID: 1323289508}
+  activar: {fileID: 672809291}
 --- !u!1 &1581931559
 GameObject:
   m_ObjectHideFlags: 0
