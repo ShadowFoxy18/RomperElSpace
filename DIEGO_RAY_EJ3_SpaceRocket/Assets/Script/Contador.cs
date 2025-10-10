@@ -1,9 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 public class Contador : MonoBehaviour
 {
     [SerializeField]
-    KeyCode botonAccion = KeyCode.Escape;
+    KeyCode botonAccion = KeyCode.Space;
 
     [SerializeField]
     GameObject pantallaJuego;
@@ -22,8 +23,7 @@ public class Contador : MonoBehaviour
 
     void Update()
     {
-        bool Tocado = Input.GetKey(botonAccion);
-        if (pantalaJuego != null) tiempoActivo = true;
+        if (pantallaJuego != null) tiempoActivo = true;
 
         if (tiempoActivo)
         {
@@ -35,29 +35,31 @@ public class Contador : MonoBehaviour
             else
             {
                 tiempoActivo = false;
-                tiempoTexto.text = "Se acabo el tiempo";
                 canvasInicio.SetActive(false);
             }
         }
 
 
-        if (Tocado && tiempoActivo)
+        if (Input.GetKeyUp(botonAccion) && tiempoActivo)
         {
             vecesTocado++;
             contadorDeSaltos.text = vecesTocado.ToString() + " veces";
-        } if (vecesTocado < 20)
-        {
-            bateriaMotor += 1.15f;
-        } else if (vecesTocado >= 20 && vecesTocado < 50)
-        {
-            bateriaMotor += 1.35f;
-        } else if (vecesTocado >= 50 && vecesTocado < 100)
-        {
-            bateriaMotor += 1.75f;
-        } else if (vecesTocado >= 100)
-        {
-            bateriaMotor += 2.15f;
+            if (vecesTocado < 20)
+            {
+                bateriaMotor += 1.15f;
+            }
+            else if (vecesTocado >= 20 && vecesTocado < 50)
+            {
+                bateriaMotor += 1.35f;
+            }
+            else if (vecesTocado >= 50 && vecesTocado < 100)
+            {
+                bateriaMotor += 1.75f;
+            }
+            else if (vecesTocado >= 100)
+            {
+                bateriaMotor += 2.15f;
+            }
         }
-        
     }
-}
+}   
