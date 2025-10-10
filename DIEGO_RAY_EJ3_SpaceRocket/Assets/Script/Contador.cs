@@ -11,6 +11,9 @@ public class Contador : MonoBehaviour
 
     [SerializeField]
     GameObject canvasInicio;  
+
+    [SerializeField]
+    GameObject canvasCohete;
     
     public float tiempoParaPulsar = 10f;
     bool tiempoActivo = false;
@@ -36,6 +39,7 @@ public class Contador : MonoBehaviour
             {
                 tiempoActivo = false;
                 canvasInicio.SetActive(false);
+                canvasCohete.SetActive(true);
             }
         }
 
