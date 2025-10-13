@@ -17,20 +17,23 @@ public class CoheteMovimiento : MonoBehaviour
     public TextMeshProUGUI fuel;
     public TextMeshProUGUI altura;
     
-    float fuelTotal;
+    [SerializeField]
+    public Contador contadorScript;
+
+    public float fuelTotal;
     float fuelRetante;
 
-    float potencia;
 
-    float alturaOptenida;
+    float alturaMax;
+
+    bool iniciado = false;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Se debera cambiar cuando descubra como obtenerlo
-        fuelTotal = 100f;
-        fuelRetante = fuelTotal;
+        canvaInicio .SetActive(true);
         canvaCohete.SetActive(false);
-        potencia = velocidad * Time.deltaTime;
     }
 
 
@@ -39,32 +42,33 @@ public class CoheteMovimiento : MonoBehaviour
         float porcentaje = (numero * 100) / fuelTotal;
         Debug.Log(porcentaje);
 
-        return porcentaje * 100f;
+        return porcentaje;
     }
 
-    float AlturaMaxObjeto(float altura)
+    void AlturaMaxObjeto()
     {
         Vector3 alturaCohete = cohete.transform.localPosition;
-        float alturaMax = 0f;
-        
-
-
-        return alturaMax;
-    }
-
-
-    // Update is called once per frame
+        if (alturaCohete.y > alturaMax) alturaMax = alturaCohete.y;
+        altura.text = "ALTURA MAXIMA: " + alturaMax.ToString("F2") + " m";
+     }
+    
+        // Update is called once per frame
     void Update()
     {
-        if (!(canvaInicio != null))
+        if (!(canvaInicio.activeSelf) && !iniciado)
         {
             canvaCohete.SetActive(true);
-            if (fuelRetante > 0)
-            {
-                cohete.transform.Translate(0, potencia, 0);
-                fuelRetante--;
-                fuel.text = "COMBUSTIBLE: " + (Porcentaje(fuelRetante)).ToString("F2") + "%";
-            }
+            fuelTotal = contadorScript.bateriaMotor;
+            fuelRetante = fuelTotal;
+            iniciado = true;
         }
+        if (fuelRetante > 0 && iniciado)
+            {
+                cohete.transform.Translate(0, velocidad * Time.deltaTime, 0);
+                fuelRetante -= 3 * Time.deltaTime;
+                fuel.text = "COMBUSTIBLE: " + (Porcentaje(fuelRetante)).ToString("F2") + "%";
+                AlturaMaxObjeto();
+            }
+            else fuel.text = "COMBUSTIBLE: 0%";
     }
 }

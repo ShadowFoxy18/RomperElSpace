@@ -22,6 +22,8 @@ public class Contador : MonoBehaviour
     public TextMeshProUGUI tiempoTexto;
 
     int vecesTocado = 0;
+    
+    [SerializeField]
     public float bateriaMotor;
 
     void Update()
