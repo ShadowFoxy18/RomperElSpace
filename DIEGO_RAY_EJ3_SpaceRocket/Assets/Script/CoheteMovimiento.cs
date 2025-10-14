@@ -28,12 +28,15 @@ public class CoheteMovimiento : MonoBehaviour
 
     bool iniciado = false;
 
+    public Rigidbody rb;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        canvaInicio .SetActive(true);
+        canvaInicio.SetActive(true);
         canvaCohete.SetActive(false);
+        rb = GetComponent<Rigidbody>();
     }
 
 
@@ -55,6 +58,10 @@ public class CoheteMovimiento : MonoBehaviour
         // Update is called once per frame
     void Update()
     {
+        rb = GetComponent<Rigidbody>();
+        fuel.text = "COMBUSTIBLE: " + (Porcentaje(fuelRetante)).ToString("F2") + "%";
+        AlturaMaxObjeto();
+
         if (!(canvaInicio.activeSelf) && !iniciado)
         {
             canvaCohete.SetActive(true);
@@ -63,12 +70,11 @@ public class CoheteMovimiento : MonoBehaviour
             iniciado = true;
         }
         if (fuelRetante > 0 && iniciado)
-            {
-                cohete.transform.Translate(0, velocidad * Time.deltaTime, 0);
-                fuelRetante -= 3 * Time.deltaTime;
-                fuel.text = "COMBUSTIBLE: " + (Porcentaje(fuelRetante)).ToString("F2") + "%";
-                AlturaMaxObjeto();
-            }
-            else fuel.text = "COMBUSTIBLE: 0%";
+        {
+            
+            rb.AddForce(0, velocidad * Time.deltaTime, 0, ForceMode.Impulse);
+            fuelRetante -= 3 * Time.deltaTime;
+        }
+        else fuel.text = "COMBUSTIBLE: 0%";
     }
 }
